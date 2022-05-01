@@ -16,11 +16,11 @@ const {Sequelize} = require('sequelize')
     port: 3306
 });
  */
-const sequelize = new Sequelize('d6rk5ijgmvcf6q',process.env.USER_NAME,process.env.PASSWORD,{
+const sequelize = new Sequelize(process.env.DB_NAME,process.env.DB_USER,process.env.DB_PASSWORD,{
     dialect: 'postgres',
     host: process.env.DB_HOST,
     logging: false,
-    port: 5432,
+    port: process.env.DB_PORT,
     dialectOptions: {
         ssl: {
             require: true,
