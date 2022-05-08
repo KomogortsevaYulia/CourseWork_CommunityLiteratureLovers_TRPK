@@ -3,10 +3,11 @@
     <div class="row">
 
       <div class="col-md-6 offset-md-3 col-xs-12">
-        <h1 class="text-xs-center">{{ title }}</h1>
+        <h1 class="text-xs-center" *ngIf="authType === 'register'">Регистрация</h1>
+        <h1 class="text-xs-center" *ngIf="authType === 'login'">Вход</h1>
         <p class="text-xs-center">
-          <a [routerLink]="['/login']" *ngIf="authType === 'register'">Have an account?</a>
-          <a [routerLink]="['/register']" *ngIf="authType === 'login'">Need an account?</a>
+          <a [routerLink]="['/login']" *ngIf="authType === 'register'">Уже есть аккаунт?</a>
+          <a [routerLink]="['/register']" *ngIf="authType === 'login'">Нет аккаунта?</a>
         </p>
         <app-list-errors [errors]="errors"></app-list-errors>
         <form [formGroup]="authForm" (ngSubmit)="submitForm()">
@@ -33,8 +34,11 @@
                 class="form-control form-control-lg"
                 type="password" />
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
-              {{ title }}
+            <button class="btn btn-lg btn-primary pull-xs-center" [disabled]="!authForm.valid" type="submit" *ngIf="authType === 'register'">
+              Регистрация
+            </button>
+            <button class="btn btn-lg btn-primary pull-xs-center" [disabled]="!authForm.valid" type="submit" *ngIf="authType === 'login'">
+              Вход
             </button>
           </fieldset>
         </form>
