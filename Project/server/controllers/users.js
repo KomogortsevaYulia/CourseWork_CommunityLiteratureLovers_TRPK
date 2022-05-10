@@ -6,14 +6,14 @@ const {sign,decode} = require('../utils/jwt')
 
 module.exports.createUser = async (req,res) => {
     try{
-        if(!req.body.user.username) throw new Error("Username is Required")
-        if(!req.body.user.fio) throw new Error("FIO is Required")
-        if(!req.body.user.email) throw new Error("Email is Required")
-        if(!req.body.user.password) throw new Error("Password is Required")
+        if(!req.body.user.username) throw new Error("Требуется логин")
+        if(!req.body.user.fio) throw new Error("Требуется ФИО ")
+        if(!req.body.user.email) throw new Error("Требуется электронная почта")
+        if(!req.body.user.password) throw new Error("Требуется ввести пароль")
         
         const existingUser = await User.findByPk(req.body.user.email)
         if(existingUser)
-            throw new Error('User aldready exists with this email id')
+            throw new Error('Пользователь уже существует с этим идентификатором электронной почты')
 
         const password = await hashPassword(req.body.user.password);
         const user = await User.create({
@@ -27,8 +27,6 @@ module.exports.createUser = async (req,res) => {
             if(user.dataValues.password)
                 delete user.dataValues.password
             user.dataValues.token = await sign(user)
-            user.dataValues.bio = null
-            user.dataValues.image = null
             res.status(201).json({user})
         }    
     }catch (e){
@@ -38,14 +36,14 @@ module.exports.createUser = async (req,res) => {
 
 module.exports.loginUser = async (req,res) => {
     try{
-        if(!req.body.user.email) throw new Error('Email is Required')
-        if(!req.body.user.password) throw new Error('Password is Required')
+        if(!req.body.user.email) throw new Error("Требуется электронная почта")
+        if(!req.body.user.password) throw new Error("Требуется ввести пароль")
 
         const user = await User.findByPk(req.body.user.email)
 
         if(!user){
             res.status(401)
-            throw new Error('No User with this email id')
+            throw new Error('Нет пользователя с этим идентификатором электронной почты')
         }
         
         //Check if password matches
@@ -53,7 +51,7 @@ module.exports.loginUser = async (req,res) => {
 
         if(!passwordMatch){
             res.status(401)
-            throw new Error('Invalid password or email id')
+            throw new Error('Неверный пароль или идентификатор электронной почты')
         }
             
         delete user.dataValues.password
@@ -70,7 +68,7 @@ module.exports.getUserByEmail = async (req,res) => {
     try{
         const user = await User.findByPk(req.user.email)
         if(!user){
-            throw new Error('No such user found')
+            throw new Error('Такой пользователь не найден')
         }
         delete user.dataValues.password
         user.dataValues.token = req.header('Authorization').split(' ')[1]
@@ -88,7 +86,7 @@ module.exports.updateUserDetails = async (req,res) => {
 
         if(!user){
             res.status(401)
-            throw new Error('No user with this email id')
+            throw new Error('Нет пользователя с этим идентификатором электронной почты')
         }
             
         

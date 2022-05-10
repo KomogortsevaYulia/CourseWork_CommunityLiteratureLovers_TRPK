@@ -27,9 +27,3 @@ const User = sequelize.define('User',{
 
 
 module.exports = User
-
-/* {
-  "user": {
-    "token": "jwt.token.here",
-  }
-} */
