@@ -1,14 +1,13 @@
-<nav class="navbar navbar-light">
-  <div class="container d-flex flex-wrap">
-    <a class="navbar-brand" routerLink="/">логотип</a>
+<nav class="navbar">
+  <div class="my-2 p-0 container d-flex  justify-content-end">
 
     <!-- Show this for logged out users -->
 
     <ul *appShowAuthed="false" class="nav">
-      <li class="nav-item">
+      <li class="nav-item ">
         <button
           type="button"
-          class="btn btn-light"
+          class="btn btn btn-outline-dark mx-1"
           routerLink="/register"
           routerLinkActive="active"
         >
@@ -18,7 +17,7 @@
       <li class="nav-item">
         <button
           type="button"
-          class="btn btn-light"
+          class="btn btn btn-outline-dark"
           routerLink="/login"
           routerLinkActive="active"
         >
@@ -30,55 +29,50 @@
     <!-- Show this for logged in users -->
     <ul *appShowAuthed="true" class="nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/editor" routerLinkActive="active">
-          <i class="ion-compose"></i>&nbsp;New Article
-        </a>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          routerLink="/editor"
+          routerLinkActive="active"
+        >
+        <i class="ion-compose"></i>&nbsp;Административная панель
+        </button>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/settings" routerLinkActive="active">
-          <i class="ion-gear-a"></i>&nbsp;Settings
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a
-          class="nav-link"
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
           [routerLink]="['/profile', currentUser.username]"
           routerLinkActive="active"
         >
-          <img
-            [src]="
-              currentUser.image ||
-              'https://static.productionready.io/images/smiley-cyrus.jpg'
-            "
-            *ngIf="currentUser.image"
-            class="user-pic"
-            alt="user image"
-          />
-          {{ currentUser.username }}
-        </a>
+          Личный кабинет
+        </button>
+      </li>
+      <li>
+        <button class="btn btn-outline-danger" (click)="logout()">Выйти</button>
       </li>
     </ul>
   </div>
-</nav>
-<header class="py-3 mb-4">
-  <div class="container d-flex flex-wrap justify-content-center">
+
+  <div class=" mb-4 container d-flex flex-wrap justify-content-center main rounded py-2">
     <ul class="nav me-auto">
-      <li class="nav-item">
-        <a
+      <li class="nav-item ">
+        <a 
+          style="color: #ffffff"
           *appShowAuthed="true"
           class="nav-link"
           routerLink="/"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
+          
         >
           Главная
         </a>
-        <a class="nav-link" *appShowAuthed="false" routerLink="/"> Главная </a>
+        <a class="nav-link font" *appShowAuthed="false" routerLink="/"> Главная </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link link-dark px-2">Жанры</a>
+        <a href="#" class="nav-link link-dark px-2  ">Жанры</a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link link-dark px-2">Подборки</a>
@@ -88,7 +82,7 @@
       </li>
     </ul>
 
-    <form class="col-12 col-lg-auto mb-3 mb-lg-0">
+    <form class="col-12 col-lg-auto  mb-lg-0">
       <input
         type="search"
         class="form-control"
@@ -97,4 +91,4 @@
       />
     </form>
   </div>
-</header>
+</nav>

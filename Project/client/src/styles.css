@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+.main {
+  background: #20c997;
+}
+.font {
+  color: black;
+}
+

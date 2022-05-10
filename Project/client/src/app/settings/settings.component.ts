@@ -23,9 +23,8 @@ export class SettingsComponent implements OnInit {
   ) {
     // create form group using the form builder
     this.settingsForm = this.fb.group({
-      image: '',
+      fio: '',
       username: '',
-      bio: '',
       email: '',
       password: ''
     });

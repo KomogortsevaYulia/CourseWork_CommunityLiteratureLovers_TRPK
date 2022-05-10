@@ -7,6 +7,7 @@ const {sign,decode} = require('../utils/jwt')
 module.exports.createUser = async (req,res) => {
     try{
         if(!req.body.user.username) throw new Error("Username is Required")
+        if(!req.body.user.fio) throw new Error("FIO is Required")
         if(!req.body.user.email) throw new Error("Email is Required")
         if(!req.body.user.password) throw new Error("Password is Required")
         
@@ -17,6 +18,7 @@ module.exports.createUser = async (req,res) => {
         const password = await hashPassword(req.body.user.password);
         const user = await User.create({
             username: req.body.user.username,
+            fio: req.body.user.fio,
             password: password,
             email: req.body.user.email
         })
@@ -92,13 +94,12 @@ module.exports.updateUserDetails = async (req,res) => {
         
         if(req.body.user){
             const username = req.body.user.username ? req.body.user.username : user.username
-            const bio = req.body.user.bio ? req.body.user.bio : user.bio
-            const image = req.body.user.image ? req.body.user.image : user.image
+            const fio = req.body.user.fio ? req.body.user.fio : user.fio
             let password = user.password
             if(req.body.user.password)
                 password = await hashPassword(req.body.user.password)
 
-            const updatedUser = await user.update({username,bio,image,password})
+            const updatedUser = await user.update({username,fio,password})
             delete updatedUser.dataValues.password
             updatedUser.dataValues.token = req.header('Authorization').split(' ')[1]
             res.json(updatedUser)

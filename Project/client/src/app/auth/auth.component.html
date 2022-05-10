@@ -1,8 +1,8 @@
 <div class="auth-page">
   <div class="container page">
-    <div class="row">
+    <div class="row ">
 
-      <div class="col-md-6 offset-md-3 col-xs-12">
+      <div class="col-md-6 offset-md-3 col-xs-12 ">
         <h1 class="text-xs-center" *ngIf="authType === 'register'">Регистрация</h1>
         <h1 class="text-xs-center" *ngIf="authType === 'login'">Вход</h1>
         <p class="text-xs-center">
@@ -15,7 +15,15 @@
             <fieldset class="form-group">
               <input
                 formControlName="username"
-                placeholder="Username"
+                placeholder="Логин"
+                class="form-control form-control-lg"
+                type="text"
+                *ngIf="authType === 'register'" />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                formControlName="fio"
+                placeholder="ФИО"
                 class="form-control form-control-lg"
                 type="text"
                 *ngIf="authType === 'register'" />
@@ -30,14 +38,14 @@
             <fieldset class="form-group">
               <input
                 formControlName="password"
-                placeholder="Password"
+                placeholder="Пароль"
                 class="form-control form-control-lg"
                 type="password" />
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-center" [disabled]="!authForm.valid" type="submit" *ngIf="authType === 'register'">
+            <button class="btn main " [disabled]="!authForm.valid" type="submit" *ngIf="authType === 'register'">
               Регистрация
             </button>
-            <button class="btn btn-lg btn-primary pull-xs-center" [disabled]="!authForm.valid" type="submit" *ngIf="authType === 'login'">
+            <button class="btn main " [disabled]="!authForm.valid" type="submit" *ngIf="authType === 'login'">
               Вход
             </button>
           </fieldset>

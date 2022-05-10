@@ -12,13 +12,10 @@ const User = sequelize.define('User',{
         allowNull: false,
         unique: true
     },
-    bio: {
-        type: DataTypes.TEXT,
-        allowNull: true
-    },
-    image: {
-        type: DataTypes.TEXT,
-        allowNull: true
+    fio:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: false
     },
     password: {
         type: DataTypes.STRING,

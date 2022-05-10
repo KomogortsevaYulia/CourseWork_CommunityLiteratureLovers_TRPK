@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticleListConfig, TagsService, UserService } from '../core';
+import {  UserService } from '../core';
 
 @Component({
   selector: 'app-home-page',
@@ -12,17 +12,12 @@ import { ArticleListConfig, TagsService, UserService } from '../core';
 export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
-    private tagsService: TagsService,
     private userService: UserService,
     private cd: ChangeDetectorRef
   ) {}
 
   isAuthenticated: boolean;
-  listConfig: ArticleListConfig = {
-    type: 'all',
-    filters: {}
-  };
-  tags: Array<string> = [];
+    tags: Array<string> = [];
   tagsLoaded = false;
 
   ngOnInit() {
@@ -40,12 +35,7 @@ export class HomeComponent implements OnInit {
       }
     );
 
-    this.tagsService.getAll()
-    .subscribe(tags => {
-      this.tags = tags;
-      this.tagsLoaded = true;
-      this.cd.markForCheck();
-    });
+    
   }
 
   trackByFn(index, item) {
@@ -59,7 +49,6 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    // Otherwise, set the list object
-    this.listConfig = {type: type, filters: filters};
+    
   }
 }
