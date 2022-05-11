@@ -3,7 +3,5 @@ export interface User {
   token: string;
   username: string;
   fio:string;
-  bio: string;
-  image: string;
   is_superuser?: boolean;
 }

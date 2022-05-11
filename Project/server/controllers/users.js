@@ -20,7 +20,8 @@ module.exports.createUser = async (req,res) => {
             username: req.body.user.username,
             fio: req.body.user.fio,
             password: password,
-            email: req.body.user.email
+            email: req.body.user.email,
+            idRole: 1,
         })
         
         if(user){

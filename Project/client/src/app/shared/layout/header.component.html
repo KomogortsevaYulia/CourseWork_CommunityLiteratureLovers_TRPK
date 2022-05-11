@@ -1,10 +1,17 @@
 <nav class="navbar">
-  <div class="my-2 p-0 container d-flex  justify-content-end">
-
+  <div class="my-2 p-0 container d-flex justify-content-end">
+    <button
+      type="button"
+      class="btn btn btn-outline-dark mx-1"
+      routerLink="/help"
+      routerLinkActive="active"
+    >
+      Справка
+    </button>
     <!-- Show this for logged out users -->
 
     <ul *appShowAuthed="false" class="nav">
-      <li class="nav-item ">
+      <li class="nav-item">
         <button
           type="button"
           class="btn btn btn-outline-dark mx-1"
@@ -32,17 +39,17 @@
         <button
           type="button"
           class="btn btn-outline-secondary"
-          routerLink="/editor"
+          routerLink="/admin"
           routerLinkActive="active"
         >
-        <i class="ion-compose"></i>&nbsp;Административная панель
+          <i class="ion-compose"></i>&nbsp;Административная панель
         </button>
       </li>
 
       <li class="nav-item">
         <button
           type="button"
-          class="btn btn-outline-secondary"
+          class="btn btn-outline-secondary mx-1"
           [routerLink]="['/profile', currentUser.username]"
           routerLinkActive="active"
         >
@@ -55,24 +62,27 @@
     </ul>
   </div>
 
-  <div class=" mb-4 container d-flex flex-wrap justify-content-center main rounded py-2">
+  <div
+    class="mb-4 container d-flex flex-wrap justify-content-center main rounded py-2"
+  >
     <ul class="nav me-auto">
-      <li class="nav-item ">
-        <a 
+      <li class="nav-item">
+        <a
           style="color: #ffffff"
           *appShowAuthed="true"
           class="nav-link"
           routerLink="/"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
-          
         >
           Главная
         </a>
-        <a class="nav-link font" *appShowAuthed="false" routerLink="/"> Главная </a>
+        <a class="nav-link font" *appShowAuthed="false" routerLink="/">
+          Главная
+        </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link link-dark px-2  ">Жанры</a>
+        <a href="#" class="nav-link link-dark px-2">Жанры</a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link link-dark px-2">Подборки</a>
@@ -82,7 +92,7 @@
       </li>
     </ul>
 
-    <form class="col-12 col-lg-auto  mb-lg-0">
+    <form class="col-12 col-lg-auto mb-lg-0">
       <input
         type="search"
         class="form-control"

@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
+import { HelpModule } from './help/help.module';
+import { AdminModule } from './admin/admin.module';
 import {
   FooterComponent,
   HeaderComponent,
@@ -21,7 +23,9 @@ import { environment } from '../environments/environment';
     CoreModule,
     SharedModule,
     HomeModule,
+    HelpModule,
     AuthModule,
+    AdminModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

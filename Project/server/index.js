@@ -7,27 +7,20 @@ const {notFound,errorHandler} = require('./middleware/errorHandler')
 const sequelize = require('./dbConnection')
 
 const User = require('./models/User')
-
+const Role = require('./models/Role')
 const userRoute = require('./routes/users')
-
+const profileRoute = require('./routes/profile')
 const app = express()
 
 //CORS
 app.use(cors({credentials: true, origin: true})) 
 
-
-
-//RELATIONS:
-//1 to many relation between user and article
-
-//One to many relation between User and Comments
-
-//Many to many relation between User and User
-User.belongsToMany(User,{
-    through:'Followers',
-    as:'followers',
-    timestamps:false,
-})
+Role.hasMany(User, {
+    foreignKey: "idRole",
+  })
+User.belongsTo(Role, {
+    foreignKey: "idRole",
+  })
 
 
 const sync = async () => await sequelize.sync({alter:true})
@@ -40,7 +33,7 @@ app.get('/',(req,res) => {
     res.json({status:"API is running"});
 })
 app.use('/api',userRoute)
-
+app.use('/api/profiles',profileRoute)
 app.use(notFound)
 app.use(errorHandler)
 
