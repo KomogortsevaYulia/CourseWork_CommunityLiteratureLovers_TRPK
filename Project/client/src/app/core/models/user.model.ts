@@ -3,5 +3,6 @@ export interface User {
   token: string;
   username: string;
   fio:string;
-  is_superuser?: boolean;
+  nameRole:string;
+  idRole?: number;
 }

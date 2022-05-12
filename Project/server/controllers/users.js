@@ -81,6 +81,22 @@ module.exports.getUserByEmail = async (req,res) => {
     }
 }
 
+module.exports.getUserByToken = async (req,res) => {
+    try{
+        const user = await User.findByPk(req.user.email)
+        if(!user){
+            throw new Error('Такой пользователь не найден')
+        }
+        delete user.dataValues.password
+        user.dataValues.token = req.header('Authorization').split(' ')[1]
+        return res.status(200).json({user})
+    }catch(e){
+        return res.status(404).json({
+            errors: { body: [ e.message ] }
+        })
+    }
+}
+
 module.exports.updateUserDetails = async (req,res) => {
     try{
         const user = await User.findByPk(req.user.email)

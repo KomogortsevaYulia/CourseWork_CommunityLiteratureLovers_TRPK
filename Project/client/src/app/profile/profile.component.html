@@ -5,28 +5,42 @@
         <h2>Личный кабинет</h2>
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-start">
       <div class="col-auto">
-        <h4>{{ profile.username }}</h4>
-        <h4>{{ profile.fio }}</h4>
-        <h4>{{ profile.email }}</h4>
-        <h4>{{ profile.nameRole }}</h4>
+        <p>Логин : {{ profile.username }}</p>
+        <p>ФИО : {{ profile.fio }}</p>
+        <p>Email : {{ profile.email }}</p>
+        <p>Роль : {{ profile.nameRole }}</p>
       </div>
     </div>
-    <div class="row justify-content-end">
-      <div class="col-auto">
-        <a
-          [routerLink]="['/settings']"
-          [hidden]="!isUser"
-          class="btn btn-sm btn-outline-secondary action-btn"
-        >
-          <i class="ion-gear-a"></i> Редактировать профиль
-        </a>
-      </div>
-    </div>
-
     <div class="row">
-      <router-outlet> Читательский дневник Рецензии Подборки </router-outlet>
+      <router-outlet>
+        
+        <button
+          type="button"
+          class="btn btn  main"
+          
+          routerLinkActive="active"
+        >
+          Читательский дневник
+        </button>
+        <button
+          type="button"
+          class="btn btn  mx-1 main"
+          
+          routerLinkActive="active"
+        >
+        Рецензии
+        </button>
+        <button
+          type="button"
+          class="btn btn  main"
+          
+          routerLinkActive="active"
+        >
+        Подборки
+        </button>
+      </router-outlet>
     </div>
   </div>
 </div>

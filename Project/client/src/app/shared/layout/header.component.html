@@ -35,17 +35,18 @@
 
     <!-- Show this for logged in users -->
     <ul *appShowAuthed="true" class="nav">
-      <li class="nav-item">
-        <button
-          type="button"
-          class="btn btn-outline-secondary"
-          routerLink="/admin"
-          routerLinkActive="active"
-        >
-          <i class="ion-compose"></i>&nbsp;Административная панель
-        </button>
-      </li>
-
+      <ng-container *ngIf="currentUser.idRole == 2 || currentUser.idRole == 3">
+        <li class="nav-item">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            routerLink="/admin"
+            routerLinkActive="active"
+          >
+            <i class="ion-compose"></i>&nbsp;Административная панель
+          </button>
+        </li>
+        </ng-container>
       <li class="nav-item">
         <button
           type="button"

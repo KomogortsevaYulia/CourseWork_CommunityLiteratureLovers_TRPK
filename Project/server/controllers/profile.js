@@ -18,7 +18,7 @@ module.exports.getFollowers = async (req,res) => {
                 },
             ]
         })
-        console.log(user)
+        
         if(!user){
             res.status(404)
             throw new Error('User with this username not found')
