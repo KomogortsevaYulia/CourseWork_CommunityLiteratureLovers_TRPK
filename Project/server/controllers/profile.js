@@ -2,7 +2,7 @@ const User = require('../models/User')
 const Role = require('../models/Role')
 
 
-module.exports.getFollowers = async (req,res) => {
+module.exports.getProfile = async (req,res) => {
     try{
         const name = req.params.username
         const user = await User.findOne({

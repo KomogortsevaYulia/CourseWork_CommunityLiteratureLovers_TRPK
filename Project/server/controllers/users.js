@@ -96,39 +96,3 @@ module.exports.getUserByToken = async (req,res) => {
         })
     }
 }
-
-module.exports.updateUserDetails = async (req,res) => {
-    try{
-        const user = await User.findByPk(req.user.email)
-
-        if(!user){
-            res.status(401)
-            throw new Error('Нет пользователя с этим идентификатором электронной почты')
-        }
-            
-        
-        if(req.body.user){
-            const username = req.body.user.username ? req.body.user.username : user.username
-            const fio = req.body.user.fio ? req.body.user.fio : user.fio
-            let password = user.password
-            if(req.body.user.password)
-                password = await hashPassword(req.body.user.password)
-
-            const updatedUser = await user.update({username,fio,password})
-            delete updatedUser.dataValues.password
-            updatedUser.dataValues.token = req.header('Authorization').split(' ')[1]
-            res.json(updatedUser)
-        }else{
-            delete user.dataValues.password
-            user.dataValues.token = req.header('Authorization').split(' ')[1]
-            res.json(user)
-        }
-        
-    }catch(e){
-        const status = res.statusCode ? res.statusCode : 500
-        return res.status(status).json({
-            errors: { body: [ e.message ] }
-        })
-    }
-    
-}
