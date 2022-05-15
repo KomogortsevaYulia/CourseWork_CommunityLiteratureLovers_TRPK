@@ -18,7 +18,4 @@ export class ListErrorsComponent {
 
   get errorList() { return this.formattedErrors; }
 
-  trackByFn(index, item) {
-    return index;
-  }
 }
