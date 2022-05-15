@@ -1,12 +1,17 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from "@angular/core";
+import { Router } from "@angular/router";
 
-import {  UserService } from '../core';
+import { UserService } from "../core";
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-home-page",
+  templateUrl: "./home.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   constructor(
@@ -16,31 +21,11 @@ export class HomeComponent implements OnInit {
   ) {}
 
   isAuthenticated: boolean;
-    tags: Array<string> = [];
-  tagsLoaded = false;
 
   ngOnInit() {
-    this.userService.isAuthenticated.subscribe(
-      (authenticated) => {
-        this.isAuthenticated = authenticated;
-        this.cd.markForCheck();
-      }
-    );
-
-    
-  }
-
-  trackByFn(index, item) {
-    return index;
-  }
-
-  setListTo(type: string = '', filters: Object = {}) {
-    // If feed is requested but user is not authenticated, redirect to login
-    if (type === 'feed' && !this.isAuthenticated) {
-      this.router.navigateByUrl('/login');
-      return;
-    }
-
-    
+    this.userService.isAuthenticated.subscribe((authenticated) => {
+      this.isAuthenticated = authenticated;
+      this.cd.markForCheck();
+    });
   }
 }

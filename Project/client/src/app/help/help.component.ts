@@ -20,14 +20,9 @@ export class HelpComponent implements OnInit {
     private cd: ChangeDetectorRef
   ) {}
 
-  isAuthenticated: boolean;
-  tags: Array<string> = [];
-  tagsLoaded = false;
-
   ngOnInit() {
     this.userService.isAuthenticated.subscribe((authenticated) => {
-      this.isAuthenticated = authenticated;
-
+      
       this.cd.markForCheck();
     });
   }

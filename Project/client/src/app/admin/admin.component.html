@@ -5,9 +5,23 @@
         <h2>Административная панель</h2>
       </div>
     </div>
-    <div class="row">
-      <router-outlet> Читательский дневник Рецензии Подборки </router-outlet>
-    </div>
+    <ng-container *ngIf="currentUser.idRole == 2 ">
+      
+        <button type="button" class="btn btn main" routerLinkActive="active">
+          Рецензии
+        </button>
+        <button type="button" class="btn btn main" routerLinkActive="active">
+          Подборки
+        </button>
+     
+      </ng-container>
+      <ng-container *ngIf=" currentUser.idRole == 3">
+        
+          <button type="button" class="btn btn main" routerLinkActive="active">
+            Заявки
+          </button>
+        
+        </ng-container>
   </div>
 </div>
 

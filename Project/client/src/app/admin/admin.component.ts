@@ -5,8 +5,7 @@ import {
   ChangeDetectorRef,
 } from "@angular/core";
 import { Router } from "@angular/router";
-
-import { UserService } from "../core";
+import { User, UserService } from '../core';
 
 @Component({
   selector: "app-admin-page",
@@ -19,10 +18,8 @@ export class AdminComponent implements OnInit {
     private userService: UserService,
     private cd: ChangeDetectorRef
   ) {}
-
+  currentUser: User;
   isAuthenticated: boolean;
-  tags: Array<string> = [];
-  tagsLoaded = false;
 
   ngOnInit() {
     this.userService.isAuthenticated.subscribe((authenticated) => {
@@ -30,5 +27,11 @@ export class AdminComponent implements OnInit {
 
       this.cd.markForCheck();
     });
+    this.userService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+        this.cd.markForCheck();
+      }
+    );
   }
 }
