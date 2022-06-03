@@ -21,9 +21,9 @@ export class HelpComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userService.isAuthenticated.subscribe((authenticated) => {
+    // this.userService.isAuthenticated.subscribe((authenticated) => {
       
-      this.cd.markForCheck();
-    });
+    //   this.cd.markForCheck();
+    // });
   }
 }
