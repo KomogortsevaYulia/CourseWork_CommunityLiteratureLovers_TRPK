@@ -33,14 +33,16 @@
                 formControlName="email"
                 placeholder="Email"
                 class="form-control form-control-lg"
-                type="text" />
+                type="text" 
+                name="email"/>
             </fieldset>
             <fieldset class="form-group">
               <input
                 formControlName="password"
                 placeholder="Пароль"
                 class="form-control form-control-lg"
-                type="password" />
+                type="password" 
+                name="password"/>
             </fieldset>
             <button class="btn main " [disabled]="!authForm.valid" type="submit" *ngIf="authType === 'register'">
               Регистрация
